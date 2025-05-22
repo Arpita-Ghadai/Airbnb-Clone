@@ -1,0 +1,132 @@
+<header
+  class="bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg sticky top-0 z-50"
+>
+  <nav class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <!-- Left side: Logo and main navigation -->
+      <div class="flex items-center space-x-8">
+        <!-- Logo -->
+        <a
+          href="/"
+          class="flex items-center space-x-2 text-xl font-bold hover:text-red-100 transition-colors duration-300"
+        >
+          <i class="fab fa-airbnb text-2xl"></i>
+          <span>airbnb</span>
+        </a>
+
+        <!-- Main Navigation -->
+        <ul class="hidden md:flex items-center space-x-6">
+          <% if(isLoggedIn){ %> <% if(user && user.userType==='guest'){ %>
+          <li>
+            <a
+              href="/homes"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'Home' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+            >
+              <i class="fas fa-home"></i>
+              <span>Homes</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/favourites"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'favourites' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+            >
+              <i class="fas fa-heart"></i>
+              <span>Favourites</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/bookings"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'bookings' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+            >
+              <i class="fas fa-calendar-check"></i>
+              <span>Bookings</span>
+            </a>
+          </li>
+          <% } else { %>
+          <li>
+            <a
+              href="/host/host-home-list"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'host-homes' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+            >
+              <i class="fas fa-house-user"></i>
+              <span>Host Homes</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/host/add-home"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'addHome' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+            >
+              <i class="fas fa-plus-circle"></i>
+              <span>Add Home</span>
+            </a>
+          </li>
+          <% } %> <% } %>
+        </ul>
+      </div>
+
+      <!-- Right side: Auth buttons -->
+      <div class="flex items-center space-x-4">
+        <% if(!isLoggedIn){ %>
+        <a
+          href="/login"
+          class="flex items-center space-x-2 px-4 py-2 rounded-lg <%= currentPage === 'login' ? 'bg-red-400/50 shadow-inner' : 'hover:bg-red-400/30' %> transition-all duration-300"
+        >
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a
+          href="/signup"
+          class="flex items-center space-x-2 px-4 py-2 bg-white text-red-500 rounded-lg hover:bg-red-100 transition-all duration-300 <%= currentPage === 'signup' ? 'ring-2 ring-white' : '' %>"
+        >
+          <i class="fas fa-user-plus"></i>
+          <span>Sign Up</span>
+        </a>
+        <% } else { %>
+        <p class="font-semibold text-lg px-4 py-2">
+          Hey <%= user.firstName %>!
+        </p>
+        <form action="/logout" method="POST">
+          <button
+            type="submit"
+            class="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-red-400/30 transition-all duration-300"
+          >
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </button>
+        </form>
+        <% } %>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden rounded-lg hover:bg-red-400/30 p-2"
+          id="mobile-menu-button"
+        >
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden pt-4" id="mobile-menu">
+      <ul class="flex flex-col space-y-3">
+        <% if(isLoggedIn){ %>
+        <!-- Copy desktop menu items here for mobile -->
+        <!-- ... same links as above but without the 'hidden md:flex' class ... -->
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>

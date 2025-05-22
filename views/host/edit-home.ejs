@@ -1,0 +1,152 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gradient-to-br from-red-50 via-white to-red-50 min-h-screen">
+  <%- include('../partials/nav') %>
+  <main class="container mx-auto mt-12 p-8 max-w-2xl">
+    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8">
+      <!-- Header Section -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800"><%= editing ? "Edit" : "Register"%> Your Home</h1>
+        <p class="text-gray-600 mt-2">Fill in the details about your property</p>
+      </div>
+
+      <form action="/host/<%= editing ? 'edit-home' : 'add-home'%>" method="POST" class="space-y-6" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= editing ? home._id : ''%>" />
+        
+        <!-- House Name -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">House Name</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fas fa-home text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              name="houseName"
+              value="<%= editing ? home.houseName : ''%>"
+              placeholder="Enter your House Name"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">Price Per Night</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fas fa-dollar-sign text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              name="price"
+              value="<%= editing ? home.price : ''%>"
+              placeholder="Price Per Night"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">Location</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fas fa-location-dot text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              name="location"
+              value="<%= editing ? home.location : ''%>"
+              placeholder="Location"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Rating -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">Rating</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fas fa-star text-gray-400"></i>
+            </div>
+            <input
+              type="number"
+              name="rating"
+              value="<%= editing ? home.rating : ''%>"
+              placeholder="Rating (1-5)"
+              min="1"
+              max="5"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Photo Upload -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">Property Photo</label>
+          <div class="relative">
+            <div class="relative group">
+              <input
+                type="file"
+                name="photo"
+                accept="image/jpg, image/jpeg, image/png"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              
+              />
+            </div>
+          </div>
+        </div>
+ <!-- New House Rules PDF Upload -->
+        <div class="relative mt-4">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">House Rules (PDF)</label>
+          <div class="relative">
+            <div class="relative group">
+              <input
+                type="file"
+                name="houseRules"
+                accept=".pdf,application/pdf"
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+             
+              />
+              <p class="mt-1 text-xs text-gray-500">Upload house rules in PDF format</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="relative">
+          <label class="text-gray-700 text-sm font-semibold mb-2 block">Description</label>
+          <div class="relative">
+            <div class="absolute top-3 left-3 text-gray-400">
+              <i class="fas fa-align-left"></i>
+            </div>
+            <textarea
+              name="description"
+              placeholder="Describe your home"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 min-h-[120px]"
+              required
+            ><%= editing ? home.description : ''%></textarea>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-[1.02]"
+        >
+          <span class="flex items-center justify-center">
+            <%= editing ? "Update Home" : "Add Home" %>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
