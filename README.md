@@ -10,13 +10,13 @@ An Airbnb clone built with Node.js, Express, MongoDB, and Tailwind CSS to provid
 - Responsive Design (Styled with Tailwind CSS for a clean UI)
 
 🛠️ Technologies Used
-Backend: Node.js, Express.js, MongoDB
-Frontend: EJS templates, Tailwind CSS
-Database: MongoDB with Mongoose
-Authentication: Sessions & Cookies
+* Backend: Node.js, Express.js, MongoDB
+* Frontend: EJS templates, Tailwind CSS
+* Database: MongoDB with Mongoose
+* Authentication: Sessions & Cookies
 
 
 How to start:
-1.git clone https://github.com/Arpita-Ghadai/Air.git
-2.npm i
-3.npm start
+1. git clone https://github.com/Arpita-Ghadai/Air.git
+2. npm i
+3. npm start
