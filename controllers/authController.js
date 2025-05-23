@@ -122,7 +122,7 @@ exports.postSignup = [
 
   (req, res, next) => {
     const { firstName, lastName, email, password, userType } = req.body;
-    console.log(req.body);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).render("auth/signup", {

@@ -25,8 +25,7 @@ exports.getAddHome = (req, res, next) => {
 
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, description } = req.body;
-  console.log(houseName, price, location, rating, description);
-  console.log(req.files);
+
   if (!req.files || !req.files.photo) {
     console.log("No image provided");
     return res.status(422).send("No image Provided");
