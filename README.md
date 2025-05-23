@@ -15,3 +15,9 @@ Backend: Node.js, Express.js, MongoDB
 Frontend: EJS templates, Tailwind CSS
 Database: MongoDB with Mongoose
 Authentication: Sessions & Cookies
+
+
+How to start:
+1.git clone https://github.com/Arpita-Ghadai/Air.git
+2.npm i
+3.npm start
