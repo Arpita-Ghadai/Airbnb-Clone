@@ -6,7 +6,7 @@ const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const DB_PATH =
-  "mongodb+srv://root:root@completecoding.w7ojmzq.mongodb.net/airbnb?retryWrites=true&w=majority&appName=CompleteCoding";
+  "mongodb+srv://root:<database_password>@completecoding.w7ojmzq.mongodb.net/<database_name>?retryWrites=true&w=majority&appName=CompleteCoding";
 const { default: mongoose } = require("mongoose");
 const multer = require("multer");
 
